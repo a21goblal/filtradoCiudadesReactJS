@@ -1,22 +1,25 @@
 import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
+
 function App() {
+  const cities = ['Jaen', 'Córdoba', 'Sevilla', 'Huelva', 'Cádiz', 'Málaga', 'Granada', 'Almería'];
+  const [filter, setFilter] = useState('');
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <input id="filter"
+          name="filter"
+          type="text"
+          value={filter}
+          onChange={event => setFilter(event.target.value)}
+        />
+      <ul>
+      {cities.filter(f => f.includes(filter) || filter === '')
+            .map(f => <li key={f}>{f}</li>)}
+      </ul>
       </header>
     </div>
   );
